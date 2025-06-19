@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Festival>
+
+@{
+    ViewData["Title"] = "Festivals";
+
+}
+
+@using MVCFestival.Helpers
+<h1>Festivals</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Festival name
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Festival stages
+            </th>
+            <th>
+                Total Capacity
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+
+                <td>
+                    <ul>
+                        @foreach (var stage in item.Stages)
+                        {
+                            <li>
+                                <a asp-action="Edit" asp-controller="Festival" asp-route-id="@stage.Id">@stage.Name</a> (@stage.Capacity)
+                            </li>
+
+                        }
+                    </ul>
+
+                </td>
+
+                <td>
+                    @FestivalHelper.CalculateTotalCapacity(@item.Stages)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

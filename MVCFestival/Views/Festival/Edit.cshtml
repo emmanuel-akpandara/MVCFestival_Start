@@ -1,0 +1,31 @@
+﻿@model MVCFestival.DAL.Models.FestivalStage
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+<div class="row">
+    <div class="col-md-4">
+
+<div class="form-group">
+    <label asp-for="Name" class="control-label">@Html.DisplayNameFor(model => model.Name)</label>
+                <input asp-for="Name" class="form-control" />
+</div>
+<div class="form-group">
+    <label asp-for="Capacity" class="control-label">@Html.DisplayNameFor(model => model.Capacity)</label>
+    <input asp-for="Capacity" class="form-control" />
+    <span asp-validation-for="Capacity" class="text-danger"></span>
+</div>
+
+</div>
+</div>
+<br/>
+
+<input type="submit" value="submit" />
+
+
+</form>
